@@ -11,9 +11,8 @@ import esprit.fgsc.clientsmicroservice.repository.IClientRepository;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/client")
-@RequiredArgsConstructor
 public class ClientController {
+	@Autowired
 private  IClientRepository clientRepository;
 
 @GetMapping
