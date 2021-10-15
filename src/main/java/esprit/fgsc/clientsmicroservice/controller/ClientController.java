@@ -3,28 +3,52 @@ package esprit.fgsc.clientsmicroservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import esprit.fgsc.clientsmicroservice.entities.Client;
 import esprit.fgsc.clientsmicroservice.repository.IClientRepository;
-import lombok.RequiredArgsConstructor;
+import esprit.fgsc.clientsmicroservice.services.ClientService;
 
+
+@CrossOrigin(origins = "*")
 @RestController
 public class ClientController {
 	@Autowired
-private  IClientRepository clientRepository;
-
+private  ClientService clientService;
+	@Autowired
+	private IClientRepository clientRepository;
 @GetMapping
 @ResponseStatus(HttpStatus.OK)
-public List<Client> getAllClients(){
-	return clientRepository.findAll();
-		
-	}
-@PostMapping
+public ResponseEntity<List<Client> >getAllClients(){
+	 return new ResponseEntity<>(clientService.getAllClients(),HttpStatus.OK);
+		}
+
+@PostMapping("/add")
 @ResponseStatus(HttpStatus.CREATED)
-public void createClient(@RequestBody Client client){
-		clientRepository.save(client);
-	}
-	
+public Client postBody(@RequestBody Client client) {
+    return  clientService.addClient(client);
+}
+
+@DeleteMapping("/delete-client/{id}")
+public String deleteTodo(@PathVariable String id) {
+    return clientService.deleteClient(id.toString());
+}
+
+@PutMapping(value="/update/{id}")
+@ResponseStatus(HttpStatus.OK)
+public ResponseEntity<Client> updateTodo(@PathVariable("id") String id,@Valid @RequestBody Client client) {
+	return new ResponseEntity<>(clientService.updateClient(id, client),HttpStatus.OK);
+}
+
+@GetMapping("/client/{id}")
+@ResponseStatus(HttpStatus.OK)
+public ResponseEntity<Client >getClientById(@PathVariable("id") String id){
+	 return new ResponseEntity<>(clientService.getClientById(id),HttpStatus.OK);
+		}
+
 }
