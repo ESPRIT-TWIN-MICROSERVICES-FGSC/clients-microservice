@@ -7,11 +7,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import esprit.fgsc.clientsmicroservice.entities.Client;
-import esprit.fgsc.clientsmicroservice.repository.IClientRepository;
 import esprit.fgsc.clientsmicroservice.services.ClientService;
 
 
@@ -20,8 +18,7 @@ import esprit.fgsc.clientsmicroservice.services.ClientService;
 public class ClientController {
 	@Autowired
 private  ClientService clientService;
-	@Autowired
-	private IClientRepository clientRepository;
+	
 @GetMapping
 @ResponseStatus(HttpStatus.OK)
 public ResponseEntity<List<Client> >getAllClients(){
@@ -30,18 +27,18 @@ public ResponseEntity<List<Client> >getAllClients(){
 
 @PostMapping("/add")
 @ResponseStatus(HttpStatus.CREATED)
-public Client postBody(@RequestBody Client client) {
+public Client addClient(@RequestBody Client client) {
     return  clientService.addClient(client);
 }
 
 @DeleteMapping("/delete-client/{id}")
-public String deleteTodo(@PathVariable String id) {
+public String deleteClient(@PathVariable String id) {
     return clientService.deleteClient(id.toString());
 }
 
 @PutMapping(value="/update/{id}")
 @ResponseStatus(HttpStatus.OK)
-public ResponseEntity<Client> updateTodo(@PathVariable("id") String id,@Valid @RequestBody Client client) {
+public ResponseEntity<Client> updateClient(@PathVariable("id") String id,@Valid @RequestBody Client client) {
 	return new ResponseEntity<>(clientService.updateClient(id, client),HttpStatus.OK);
 }
 

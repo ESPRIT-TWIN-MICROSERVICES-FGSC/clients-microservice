@@ -8,6 +8,7 @@ import javax.validation.constraints.Email;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mongodb.lang.NonNull;
 
@@ -36,6 +37,7 @@ public class Client {
 	 public String webSite;
 	 public String gender;
 	 public String country;
+	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	 public Date joinDate ;
 	 
 	 public String getClientId() {

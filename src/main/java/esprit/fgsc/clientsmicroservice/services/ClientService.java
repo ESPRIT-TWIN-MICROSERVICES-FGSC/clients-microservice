@@ -20,6 +20,7 @@ public class ClientService {
 	private IClientRepository clientRepository;
 	
 	public Client addClient(Client client) {
+		
 		return clientRepository.save(client);
 		
 	}
@@ -47,7 +48,7 @@ public Client updateClient(String id,Client newClient) {
 		existingClient.setWebSite(newClient.getWebSite());
 		existingClient.setGender(newClient.getGender());
 		existingClient.setCountry(newClient.getCountry());
-		return clientRepository.save(newClient);
+		return clientRepository.save(existingClient);
 		
 	}else {
 		return null;
