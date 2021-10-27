@@ -1,23 +1,14 @@
 package esprit.fgsc.clientsmicroservice.entities;
 
-import java.io.Serializable;
-import java.util.Date;
+
 
 import javax.validation.constraints.Email;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.mongodb.lang.NonNull;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.mongodb.lang.NonNull;
 
 
 @Document
@@ -26,9 +17,8 @@ public class Client {
 	@Id
 	 public String clientId;
 	@NonNull
-	 public String firsttName;
+	 public String fullName;
 	@NonNull
-	 public String lastName;
 	 public String address;
 	 @Email
 	 public String email;
@@ -45,12 +35,6 @@ public class Client {
 	public void setClientId(String clientId) {
 		this.clientId = clientId;
 	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 	public String getAddress() {
 		return address;
 	}
@@ -59,6 +43,12 @@ public class Client {
 	}
 	public String getEmail() {
 		return email;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 	public void setEmail(String email) {
 		this.email = email;
@@ -99,10 +89,5 @@ public class Client {
 	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
-	public String getFirsttName() {
-		return firsttName;
-	}
-	public void setFirsttName(String firsttName) {
-		this.firsttName = firsttName;
-	}	
+
 }

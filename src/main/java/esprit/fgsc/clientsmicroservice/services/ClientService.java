@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import esprit.fgsc.clientsmicroservice.entities.Client;
@@ -39,8 +38,7 @@ public class ClientService {
 public Client updateClient(String id,Client newClient) {
 	if(clientRepository.findById(id).isPresent()) {
 		Client existingClient = clientRepository.findById(id).get();
-		existingClient.setFirsttName(newClient.getFirsttName());
-		existingClient.setLastName(newClient.getLastName());
+		existingClient.setFullName(newClient.getFullName());
 		existingClient.setAddress(newClient.getAddress());
 		existingClient.setEmail(newClient.getEmail());
 		existingClient.setTel(newClient.getTel());
