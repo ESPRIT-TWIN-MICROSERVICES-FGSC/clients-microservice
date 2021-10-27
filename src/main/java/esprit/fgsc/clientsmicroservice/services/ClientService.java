@@ -30,10 +30,10 @@ public class ClientService {
 		 return clientRepository.findAll(sortByJoinDateDesc);
 	}
 	
-	public String deleteClient(String id) {   
+	public void deleteClient(String id) {   
 
     	clientRepository.deleteById(id);
-    	return "client deleted"+id;
+    
 	}
            
 public Client updateClient(String id,Client newClient) {

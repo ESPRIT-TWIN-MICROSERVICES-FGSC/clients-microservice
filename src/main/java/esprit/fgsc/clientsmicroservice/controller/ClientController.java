@@ -32,8 +32,8 @@ public Client addClient(@RequestBody Client client) {
 }
 
 @DeleteMapping("/delete-client/{id}")
-public String deleteClient(@PathVariable String id) {
-    return clientService.deleteClient(id.toString());
+public void deleteClient(@PathVariable String id) {
+     clientService.deleteClient(id.toString());
 }
 
 @PutMapping(value="/update/{id}")
