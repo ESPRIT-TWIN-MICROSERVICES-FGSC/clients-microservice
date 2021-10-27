@@ -37,8 +37,7 @@ public class Client {
 	 public String webSite;
 	 public String gender;
 	 public String country;
-	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	 public Date joinDate ;
+	 public String joinDate ;
 	 
 	 public String getClientId() {
 		return clientId;
@@ -94,10 +93,10 @@ public class Client {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public Date getJoinDate() {
+	public String getJoinDate() {
 		return joinDate;
 	}
-	public void setJoinDate(Date joinDate) {
+	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
 	public String getFirsttName() {
